@@ -1,0 +1,7 @@
+{
+  "name": "escursionando-fe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
