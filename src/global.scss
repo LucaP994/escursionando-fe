@@ -24,3 +24,88 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+#container{
+    background-image: url("./assets/bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    filter: grayscale(100%)
+    opacity(0.5);
+}
+//============================= HEADER =============================
+.header-container{
+    width: 100%;
+    padding: 0.5rem;
+    z-index: 100;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+}
+.header-container div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    //margin: auto;
+}
+.logo img{
+    height: 3rem;
+    width: 3rem;
+    margin-right: 0.5rem;
+}
+.logo h1{
+    color: #212121;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.options{
+    font-size: 3rem;
+    color: #a6a6a6;
+    border-radius: 50%;
+}
+.options:active{
+    background-color: #d8d8d8;
+}
+#container{
+    height: 100%;
+    width: 100%;
+    background-color: #d8d8d8;
+}
+//============================= MENU BAR =============================
+.menu-container{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5rem 0;
+    background-color: #ffffff;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+}
+.menu-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 2rem;
+    background-color: #ffffff;
+    color: #212121;
+    border-radius: 50%;
+    transition: all 0.1s;
+}
+.menu-icon p{
+    font-size: 0.7rem;
+    margin: 0;
+}
+.menu-icon:active{
+    background-color: #d8d8d8;
+}
