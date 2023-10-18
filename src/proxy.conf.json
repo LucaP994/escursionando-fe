@@ -1,0 +1,8 @@
+{
+    "*/*": {
+      "target":  "https://escursionando-test.it",
+      "secure": false,
+      "logLevel": "debug"
+    },
+    "changeOrigin": true
+  }

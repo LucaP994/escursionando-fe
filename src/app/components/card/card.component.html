@@ -1,0 +1,12 @@
+<div id="{{item.itemId}}" class="item-card">
+  <div class="item-image" style="background-image: url('{{item.imgUrl}}');"></div>
+  <div class="item-title">{{item.title}}</div>  
+  <div class="item-locatoin"><small>({{item.location}})</small></div>  
+  <div class="item-desc">{{item.desc}}</div>
+  <div class="distance"><small>dist. {{distance}}km - h. {{item.coords.height}}m - diff. {{item.diff}}/10</small></div>
+  <div class="item-actions">
+    <div class="item-action go"><ion-icon name="navigate-outline"></ion-icon></div>
+    <div class="item-action search-adv"><ion-icon name="search-outline"></ion-icon></div>
+    <div class="item-action create-new-adv"><ion-icon name="add-outline"></ion-icon></div>
+  </div>
+</div>

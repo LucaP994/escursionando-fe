@@ -1,0 +1,54 @@
+[
+    {
+        "itemiD": "cstlblvdrfmdns",
+        "title": "Castello Belvedere",
+        "location":"Fiumedinisi (ME)",
+        "desc": "Il più alto castello della provincia messinese. Situato a 750 m s.l.m. gode di una vista unica, dalla quale è possibile ammirare l'intera costa ionica.",
+        "imgUrl": "../../assets/images/belvedere.jpg",
+        "coords": {
+            "lat": 38.011290,
+            "lon": 15.374871,
+            "height":750
+        },
+        "diff":5        
+    },
+    {
+        "itemiD": "crtrslvstr",
+        "title": "Crateri Silvestri",
+        "location":"Nicolosi (CT)",
+        "desc": "La loro formazione risale all'eruzione del 1892: questa ebbe inizio il 9 luglio con la formazione di una frattura radiale, e quindi di una bottoniera di cinque crateri, fra quota 2025 e 1800 m, sul versante sud dei fianchi del vulcano. Durò 173 giorni percorse circa 7 chilometri, fino a lambire i Monti Rossi dal lato orientale, fermandosi poco al di sopra di Nicolosi, a quota 970 m s.l.m.",
+        "imgUrl": "../../assets/images/crateri-silvestri.jpg",
+        "coords": {
+            "lat": 37.697847,
+            "lon": 15.005566,
+            "height":1986
+        },
+        "diff":5        
+    },
+    {
+        "itemiD": "vldlbv",
+        "title": "Valle del Bove",
+        "location":"Zafferana Etnea (CT)",
+        "desc": "La Valle del Bove è un'ampia conca posta sul versante orientale dell'edificio vulcanico dell'Etna, all'interno dell'area protetta del Parco dell'Etna, nel territorio del comune di Zafferana Etnea (CT).",
+        "imgUrl": "../../assets/images/valle-del-bove.jpg",
+        "coords": {
+            "lat": 37.699943,
+            "lon": 15.049996,
+            "height":2150
+        },
+        "diff":7        
+    },
+    {
+        "itemiD": "mntscdr",
+        "title": "Monte Scuderi",
+        "location":"Fiumedinisi (ME)",
+        "desc": "Il monte Scuderi è una montagna della catena dei Peloritani, alta 1.253 metri, situata nei territori dei comuni di Fiumedinisi, Itala e Alì, a ridosso del mar Ionio in Sicilia.",
+        "imgUrl": "../../assets/images/monte-scuderi.jpg",
+        "coords": {
+            "lat": 38.064978,
+            "lon": 15.401829,
+            "height":1253
+        },
+        "diff":6       
+    }
+]
