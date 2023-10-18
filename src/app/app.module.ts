@@ -10,11 +10,13 @@ import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppContext } from './context/app-context';
+import { SafePipe } from './safe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     MenuBarComponent,
-    HeaderComponent
+    HeaderComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

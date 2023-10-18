@@ -33,7 +33,7 @@
     --background: none;
 }
 
-#item-container{
+.item-container{
     //height: 100%;
     width: 100%;
     background-color: #ffffff00;
@@ -165,4 +165,24 @@
 }.item-action.create-new-adv{
     background: #48a63e;
     color: #ffffff;
+}
+//============================= PROFILE-PAGE =============================
+.welcome{
+    margin: 0;
+}
+.profile-image{
+    width: 70vw;
+    height: 70vw;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 1rem;
+}
+.user-info{
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 1.2rem;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
 }

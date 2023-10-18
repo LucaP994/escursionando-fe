@@ -1,13 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="bg">
+  <div class="item-container">
+    <h2 class="welcome">Ciao {{user.name}}</h2>
+    <div class="profile-image" style="background-image: url('{{user.userImage}}');"></div>
+    <div class="user-info">
+      <p>Livello utente: {{user.level}}</p>
+      <p>Ultima escursione: {{user.lastTrip}}</p>
+      <p>Tot distanza percorsa: {{user.walkedDistance}} km</p>
+      <p>Escursioni effettuate: {{user.tripNumber}}</p>
+    </div>
+  </div>
 </ion-content>

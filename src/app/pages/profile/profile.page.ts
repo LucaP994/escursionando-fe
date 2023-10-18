@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppContext } from 'src/app/context/app-context';
+import { User } from 'src/app/models/user-model';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
-  constructor() { }
+  public user: User;
+  constructor(
+    private sessionContext: AppContext
+  ) { }
 
   ngOnInit() {
+    this.user = this.sessionContext.context.user;
   }
 
 }
