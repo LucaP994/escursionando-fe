@@ -1,0 +1,43 @@
+.register-container {
+  padding: 2rem 0;
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--ion-color-primary);
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    margin-top: 0.3rem;
+  }
+}
+
+.form-section {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+
+  ion-item {
+    margin-bottom: 0.5rem;
+    --border-radius: 12px;
+    --padding-start: 16px;
+  }
+}
+
+.register-btn {
+  margin-top: 1rem;
+  --border-radius: 12px;
+  height: 48px;
+}
+
+.error-message {
+  text-align: center;
+  margin: 0.5rem 0;
+}

@@ -1,0 +1,96 @@
+<ion-content>
+  <!-- GPS Recording Section -->
+  <div class="recording-section" *ngIf="!isRecording && !isPaused">
+    <div class="gps-prompt">
+      <ion-icon name="location-outline" class="gps-icon"></ion-icon>
+      <h2>Pronto per partire?</h2>
+      <p>Avvia il tracking GPS per registrare il tuo percorso</p>
+      <ion-button expand="block" color="primary" (click)="startRecording()">
+        <ion-icon name="play" slot="start"></ion-icon>
+        Avvia Tracking GPS
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Active Recording -->
+  <div class="recording-active" *ngIf="isRecording || isPaused">
+    <div class="stats-display">
+      <div class="stat-item">
+        <ion-icon name="map-outline"></ion-icon>
+        <span class="stat-value">{{ distance.toFixed(2) }}</span>
+        <span class="stat-unit">km</span>
+      </div>
+      <div class="stat-item">
+        <ion-icon name="trending-up-outline"></ion-icon>
+        <span class="stat-value">{{ elevation }}</span>
+        <span class="stat-unit">m</span>
+      </div>
+      <div class="stat-item">
+        <ion-icon name="time-outline"></ion-icon>
+        <span class="stat-value">{{ formatTime(seconds) }}</span>
+        <span class="stat-unit"></span>
+      </div>
+      <div class="stat-item">
+        <ion-icon name="flag-outline"></ion-icon>
+        <span class="stat-value">{{ trackPoints.length }}</span>
+        <span class="stat-unit">punti</span>
+      </div>
+    </div>
+    
+    <div class="recording-indicator" *ngIf="!isPaused">
+      <span class="dot"></span> Registrazione in corso...
+    </div>
+    <div class="recording-indicator paused" *ngIf="isPaused">
+      ⏸ Registrazione in pausa
+    </div>
+
+    <div class="recording-actions">
+      <ion-button *ngIf="!isPaused" color="warning" (click)="pauseRecording()">
+        <ion-icon name="pause" slot="start"></ion-icon> Pausa
+      </ion-button>
+      <ion-button *ngIf="isPaused" color="success" (click)="resumeRecording()">
+        <ion-icon name="play" slot="start"></ion-icon> Riprendi
+      </ion-button>
+      <ion-button color="danger" (click)="stopRecording()">
+        <ion-icon name="stop" slot="start"></ion-icon> Stop
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Save Form (shown after stop) -->
+  <div class="save-form" *ngIf="!isRecording && trackPoints.length > 0">
+    <h3>Salva percorso</h3>
+    
+    <ion-item>
+      <ion-label position="floating">Titolo *</ion-label>
+      <ion-input [(ngModel)]="title" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Località</ion-label>
+      <ion-input [(ngModel)]="location" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descrizione</ion-label>
+      <ion-textarea [(ngModel)]="description" rows="3"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Difficoltà: {{ difficulty }}/10</ion-label>
+      <ion-range [(ngModel)]="difficulty" min="1" max="10" step="1" snaps color="danger">
+        <ion-label slot="start">1</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <div class="track-summary">
+      <p><strong>Distanza:</strong> {{ distance.toFixed(2) }} km</p>
+      <p><strong>Dislivello:</strong> {{ elevation }} m</p>
+      <p><strong>Durata:</strong> {{ formatTime(seconds) }}</p>
+      <p><strong>Punti GPS:</strong> {{ trackPoints.length }}</p>
+    </div>
+
+    <ion-button expand="block" color="success" (click)="saveTrack()" [disabled]="!title">
+      <ion-icon name="cloud-upload-outline" slot="start"></ion-icon>
+      Salva Percorso
+    </ion-button>
+  </div>
+</ion-content>

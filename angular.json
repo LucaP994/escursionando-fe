@@ -31,8 +31,13 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "styles": [
+              "src/theme/variables.scss",
+              "src/global.scss",
+              "node_modules/leaflet/dist/leaflet.css"
+            ],
+              "scripts": [],
+              "allowedCommonJsDependencies": ["leaflet"]
           },
           "configurations": {
             "production": {
@@ -44,8 +49,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ],
               "fileReplacements": [
@@ -76,10 +81,10 @@
             "proxyConfig": "src/proxy.conf.json"},
           "configurations": {
             "production": {
-              "browserTarget": "app:build:production"
+              "buildTarget": "app:build:production"
             },
             "development": {
-              "browserTarget": "app:build:development"
+              "buildTarget": "app:build:development"
             },
             "ci": {
               "progress": false
@@ -90,7 +95,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "app:build"
+            "buildTarget": "app:build"
           }
         },
         "test": {
@@ -113,8 +118,13 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "styles": [
+              "src/theme/variables.scss",
+              "src/global.scss",
+              "node_modules/leaflet/dist/leaflet.css"
+            ],
+            "scripts": [],
+            "allowedCommonJsDependencies": ["leaflet"]
           },
           "configurations": {
             "ci": {

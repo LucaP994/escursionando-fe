@@ -1,5 +1,45 @@
-<ion-content [fullscreen]="true" class="bg">
+<ion-content [fullscreen]="true">
+  <!-- Hero Section per utenti non autenticati -->
+  <div class="hero-section" *ngIf="(isAuthenticated$ | async) === false && (tracks$ | async)?.length === 0">
+    <div class="hero-content">
+      <img src="../../../assets/icon/favicon.png" alt="Escursionando" class="hero-logo" />
+      <h1>Escursionando</h1>
+      <p>Scopri, condividi e vivi l'avventura con la community di escursionisti</p>
+      <div class="hero-actions">
+        <ion-button expand="block" color="primary" routerLink="/login">Accedi</ion-button>
+        <ion-button expand="block" fill="outline" routerLink="/register">Registrati</ion-button>
+      </div>
+      <p class="guest-text" routerLink="/home">Continua come ospite →</p>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-section">
+    <div class="search-bar">
+      <ion-icon name="search-outline"></ion-icon>
+      <input 
+        type="text" 
+        placeholder="Cerca un percorso..." 
+        [(ngModel)]="searchQuery" 
+        (input)="onSearch()"
+      />
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-section" *ngIf="loading$ | async">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+    <p>Caricamento percorsi...</p>
+  </div>
+
+  <!-- Tracks List -->
   <div class="item-container">
-    <app-card *ngFor="let item of itemList" [item]="item" style="margin-bottom: 1rem;"></app-card>
+    <app-card *ngFor="let track of tracks$ | async" [track]="track" style="margin-bottom: 1rem;"></app-card>
+    
+    <div class="empty-state" *ngIf="(tracks$ | async)?.length === 0 && !(loading$ | async)">
+      <ion-icon name="map-outline" size="large"></ion-icon>
+      <p>Nessun percorso trovato</p>
+      <ion-button fill="clear" routerLink="/explore">Esplora la mappa</ion-button>
+    </div>
   </div>
 </ion-content>

@@ -1,0 +1,88 @@
+.recording-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  padding: 2rem;
+}
+
+.gps-prompt {
+  text-align: center;
+  .gps-icon {
+    font-size: 4rem;
+    color: var(--ion-color-primary);
+    margin-bottom: 1rem;
+  }
+  h2 { margin: 0 0 0.5rem; }
+  p { color: var(--ion-color-medium); margin-bottom: 2rem; }
+}
+
+.stats-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    
+    ion-icon { font-size: 1.5rem; color: var(--ion-color-primary); }
+    .stat-value { font-size: 1.5rem; font-weight: 700; margin: 0.3rem 0; }
+    .stat-unit { font-size: 0.8rem; color: var(--ion-color-medium); }
+  }
+}
+
+.recording-indicator {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: var(--ion-color-success);
+  
+  .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ion-color-success);
+    margin-right: 0.5rem;
+    animation: blink 1s infinite;
+  }
+  
+  &.paused { color: var(--ion-color-warning); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.recording-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.save-form {
+  padding: 1rem;
+  
+  h3 { margin: 0 0 1rem; font-size: 1.2rem; }
+  
+  ion-item { margin-bottom: 0.5rem; --border-radius: 12px; }
+  
+  .track-summary {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    
+    p { margin: 0.3rem 0; }
+  }
+}

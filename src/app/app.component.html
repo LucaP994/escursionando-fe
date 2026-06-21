@@ -1,5 +1,7 @@
 <ion-app>
   <app-header></app-header>
-  <ion-router-outlet *ngIf="loaded"></ion-router-outlet>
+  <div class="router-wrapper">
+    <ion-router-outlet *ngIf="loaded"></ion-router-outlet>
+  </div>
   <app-menu-bar></app-menu-bar>
 </ion-app>

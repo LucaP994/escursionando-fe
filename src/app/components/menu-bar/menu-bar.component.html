@@ -1,14 +1,33 @@
 <div class="menu-container">
-  <div class="menu-icon menu-home" [routerLink]="['/home']" replaceUrl="true"><ion-icon name="home-outline"></ion-icon>
-    <!-- <p>Home</p> -->
+  <div class="menu-icon" [routerLink]="['/home']" replaceUrl="true">
+    <ion-icon name="home-outline"></ion-icon>
+    <p>Home</p>
   </div>
-  <div class="menu-icon menu-profile" [routerLink]="['/profile']" replaceUrl="true"><ion-icon name="person-outline"></ion-icon>
-    <!-- <p>Profile</p> -->
+  <div class="menu-icon" [routerLink]="['/explore']" replaceUrl="true">
+    <ion-icon name="map-outline"></ion-icon>
+    <p>Esplora</p>
   </div>
-  <div class="menu-icon menu-explore" [routerLink]="['/explore']" replaceUrl="true"><ion-icon name="map-outline"></ion-icon>
-    <!-- <p>Exlore</p> -->
+  <div class="menu-icon menu-add" (click)="createTrack()">
+    <ion-icon name="add-circle"></ion-icon>
   </div>
-  <!-- <div class="menu-icon menu-chat"><ion-icon name="chatbubbles-outline"></ion-icon>
-     <p>Chat</p> 
-  </div> -->
+  <ng-container *ngIf="isAuthenticated$ | async; else guestMenu">
+    <div class="menu-icon" [routerLink]="['/profile']" replaceUrl="true">
+      <ion-icon name="person-outline"></ion-icon>
+      <p>Profilo</p>
+    </div>
+    <div class="menu-icon" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+      <p>Exit</p>
+    </div>
+  </ng-container>
+  <ng-template #guestMenu>
+    <div class="menu-icon" [routerLink]="['/login']" replaceUrl="true">
+      <ion-icon name="log-in-outline"></ion-icon>
+      <p>Login</p>
+    </div>
+    <div class="menu-icon" [routerLink]="['/register']" replaceUrl="true">
+      <ion-icon name="person-add-outline"></ion-icon>
+      <p>Registrati</p>
+    </div>
+  </ng-template>
 </div>

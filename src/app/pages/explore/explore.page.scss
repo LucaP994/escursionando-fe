@@ -1,0 +1,29 @@
+.filter-bar {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  background: rgba(255,255,255,0.95);
+  padding: 0.5rem;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  
+  .filter-item {
+    --padding-start: 8px;
+    --inner-padding-end: 8px;
+    --min-height: 44px;
+  }
+}
+
+.map-container {
+  width: 100%;
+  height: calc(100vh - 200px);
+  margin-top: 0;
+  z-index: 1;
+}
+
+ion-content {
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
