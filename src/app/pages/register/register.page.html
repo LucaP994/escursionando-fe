@@ -8,42 +8,42 @@
     <div class="form-section">
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
-        <ion-input [(ngModel)]="name" type="text" required></ion-input>
+        <ion-input [ngModel]="name()" (ngModelChange)="name.set($event)" type="text" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Cognome</ion-label>
-        <ion-input [(ngModel)]="surname" type="text" required></ion-input>
+        <ion-input [ngModel]="surname()" (ngModelChange)="surname.set($event)" type="text" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Username</ion-label>
-        <ion-input [(ngModel)]="username" type="text" required></ion-input>
+        <ion-input [ngModel]="username()" (ngModelChange)="username.set($event)" type="text" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Email</ion-label>
-        <ion-input [(ngModel)]="email" type="email" required></ion-input>
+        <ion-input [ngModel]="email()" (ngModelChange)="email.set($event)" type="email" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Password</ion-label>
-        <ion-input [(ngModel)]="password" type="password" required></ion-input>
+        <ion-input [ngModel]="password()" (ngModelChange)="password.set($event)" type="password" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Conferma Password</ion-label>
-        <ion-input [(ngModel)]="confirmPassword" type="password" required></ion-input>
+        <ion-input [ngModel]="confirmPassword()" (ngModelChange)="confirmPassword.set($event)" type="password" required></ion-input>
       </ion-item>
 
-      <div class="error-message" *ngIf="error$ | async as error">
+      <div class="error-message" *ngIf="error() as error">
         <ion-text color="danger">{{ error }}</ion-text>
       </div>
 
       <ion-button expand="block" class="register-btn" (click)="register()" 
-          [disabled]="!name || !surname || !username || !email || !password || password !== confirmPassword">
-        <ion-spinner *ngIf="loading$ | async"></ion-spinner>
-        <span *ngIf="!(loading$ | async)">Registrati</span>
+          [disabled]="!name() || !surname() || !username() || !email() || !password() || password() !== confirmPassword()">
+        <ion-spinner *ngIf="loading()"></ion-spinner>
+        <span *ngIf="!loading()">Registrati</span>
       </ion-button>
 
       <ion-button expand="block" fill="clear" routerLink="/login">

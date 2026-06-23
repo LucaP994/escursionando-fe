@@ -1,4 +1,4 @@
-import { createReducer, on, createSelector, createFeatureSelector } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { Track } from '../../models/track-model';
 import { Comment } from '../../models/comment-model';
@@ -86,35 +86,4 @@ export const tracksReducer = createReducer(
       state
     ) as TracksState
   )
-);
-
-// Selectors
-export const selectTracksState = createFeatureSelector<TracksState>('tracks');
-
-export const { selectAll: selectAllTracks, selectEntities: selectTrackEntities } = adapter.getSelectors(selectTracksState);
-
-export const selectTracksLoading = createSelector(
-  selectTracksState,
-  (state) => state.loading
-);
-
-export const selectSelectedTrackId = createSelector(
-  selectTracksState,
-  (state) => state.selectedTrackId
-);
-
-export const selectSelectedTrack = createSelector(
-  selectTrackEntities,
-  selectSelectedTrackId,
-  (entities, selectedId) => selectedId ? entities[selectedId] ?? null : null
-);
-
-export const selectTrackComments = createSelector(
-  selectTracksState,
-  (state) => state.comments
-);
-
-export const selectTrackSearch = createSelector(
-  selectTracksState,
-  (state) => state.search
 );

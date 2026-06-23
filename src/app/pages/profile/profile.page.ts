@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AppContext } from 'src/app/context/app-context';
 import { User } from 'src/app/models/user-model';
 
@@ -6,7 +6,8 @@ import { User } from 'src/app/models/user-model';
     selector: 'app-profile',
     templateUrl: './profile.page.html',
     styleUrls: ['./profile.page.scss'],
-    standalone: false
+    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfilePage implements OnInit {
   public user: User;

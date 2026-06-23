@@ -1,29 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import * as AuthActions from '../../store/auth/auth.actions';
-import { Observable } from 'rxjs';
+import { selectAuthLoading, selectAuthError } from '../../store/auth/auth.selectors';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  standalone: false
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginPage {
-  username = '';
-  password = '';
-  loading$: Observable<boolean>;
-  error$: Observable<string | null>;
+  private store = inject(Store<AppState>);
 
-  constructor(private store: Store<AppState>) {
-    this.loading$ = this.store.select(s => s.auth.loading);
-    this.error$ = this.store.select(s => s.auth.error);
-  }
+  username = signal('');
+  password = signal('');
+  loading = this.store.selectSignal(selectAuthLoading);
+  error = this.store.selectSignal(selectAuthError);
 
   login() {
-    if (this.username && this.password) {
-      this.store.dispatch(AuthActions.login({ username: this.username, password: this.password }));
+    if (this.username() && this.password()) {
+      this.store.dispatch(AuthActions.login({ username: this.username(), password: this.password() }));
     }
   }
 

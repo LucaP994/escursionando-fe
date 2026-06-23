@@ -1,19 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, switchMap, catchError, withLatestFrom } from 'rxjs/operators';
+import { map, switchMap, catchError, withLatestFrom, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import { TrackService } from '../../services/track.service';
 import { AppState } from '../app.state';
 import * as TracksActions from './tracks.actions';
 
 @Injectable()
 export class TracksEffects {
-  constructor(
-    private actions$: Actions,
-    private trackService: TrackService,
-    private store: Store<AppState>
-  ) {}
+  private actions$ = inject(Actions);
+  private trackService = inject(TrackService);
+  private store = inject(Store<AppState>);
+  private router = inject(Router);
 
   loadTracks$ = createEffect(() =>
     this.actions$.pipe(
@@ -28,6 +28,28 @@ export class TracksEffects {
         )
       )
     )
+  );
+
+  createTrack$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TracksActions.createTrack),
+      switchMap(({ trackData }) =>
+        this.trackService.createTrack(trackData).pipe(
+          map(track => TracksActions.createTrackSuccess({ track })),
+          catchError(error => of(TracksActions.createTrackFailure({
+            error: error.error?.message || 'Errore creazione percorso'
+          })))
+        )
+      )
+    )
+  );
+
+  createTrackSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TracksActions.createTrackSuccess),
+      tap(() => this.router.navigate(['/home']))
+    ),
+    { dispatch: false }
   );
 
   loadComments$ = createEffect(() =>

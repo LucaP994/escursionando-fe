@@ -1,40 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import * as AuthActions from '../../store/auth/auth.actions';
-import { Observable } from 'rxjs';
+import { selectAuthLoading, selectAuthError } from '../../store/auth/auth.selectors';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
-  standalone: false
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterPage {
-  name = '';
-  surname = '';
-  username = '';
-  email = '';
-  password = '';
-  confirmPassword = '';
-  loading$: Observable<boolean>;
-  error$: Observable<string | null>;
+  private store = inject(Store<AppState>);
 
-  constructor(private store: Store<AppState>) {
-    this.loading$ = this.store.select(s => s.auth.loading);
-    this.error$ = this.store.select(s => s.auth.error);
-  }
+  name = signal('');
+  surname = signal('');
+  username = signal('');
+  email = signal('');
+  password = signal('');
+  confirmPassword = signal('');
+  loading = this.store.selectSignal(selectAuthLoading);
+  error = this.store.selectSignal(selectAuthError);
 
   register() {
-    if (this.password !== this.confirmPassword) {
-      return;
-    }
+    if (this.password() !== this.confirmPassword()) return;
     this.store.dispatch(AuthActions.register({
-      name: this.name,
-      surname: this.surname,
-      username: this.username,
-      email: this.email,
-      password: this.password
+      name: this.name(),
+      surname: this.surname(),
+      username: this.username(),
+      email: this.email(),
+      password: this.password()
     }));
   }
 }

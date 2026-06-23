@@ -1,36 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { AppState } from '../../store/app.state';
+import { selectIsAuthenticated } from '../../store/auth/auth.selectors';
 import * as AuthActions from '../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-menu-bar',
   templateUrl: './menu-bar.component.html',
   styleUrls: ['./menu-bar.component.scss'],
-  standalone: false
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuBarComponent {
-  isAuthenticated$: Observable<boolean>;
+  private router = inject(Router);
+  private store = inject(Store<AppState>);
 
-  constructor(
-    private router: Router,
-    private store: Store<AppState>
-  ) {
-    this.isAuthenticated$ = this.store.select(s => s.auth.isAuthenticated);
-  }
+  isAuthenticated = this.store.selectSignal(selectIsAuthenticated);
 
-  navigateTo(path: string) {
-    this.router.navigateByUrl(path);
-  }
+  navigateTo(path: string) { this.router.navigateByUrl(path); }
 
   logout() {
     this.store.dispatch(AuthActions.logout());
     this.router.navigateByUrl('/home');
   }
 
-  createTrack() {
-    this.router.navigateByUrl('/create-track');
-  }
+  createTrack() { this.router.navigateByUrl('/create-track'); }
 }

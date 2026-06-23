@@ -27,6 +27,21 @@ export const setTrackFilter = createAction(
   props<{ difficulty: number | null; sortBy: string }>()
 );
 
+export const createTrack = createAction(
+  '[Tracks] Create Track',
+  props<{ trackData: any }>()
+);
+
+export const createTrackSuccess = createAction(
+  '[Tracks] Create Track Success',
+  props<{ track: Track }>()
+);
+
+export const createTrackFailure = createAction(
+  '[Tracks] Create Track Failure',
+  props<{ error: string }>()
+);
+
 export const loadComments = createAction(
   '[Tracks] Load Comments',
   props<{ trackId: string }>()

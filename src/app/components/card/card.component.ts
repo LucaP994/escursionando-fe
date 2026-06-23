@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Track } from '../../models/track-model';
 import { Coordinates } from '../../models/coordinates-model';
@@ -7,13 +7,13 @@ import { Coordinates } from '../../models/coordinates-model';
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  standalone: false
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardComponent implements OnInit {
+  private router = inject(Router);
   @Input() track: Track = new Track();
   public distance: number = 0;
-
-  constructor(private router: Router) {}
 
   ngOnInit() {
     try {

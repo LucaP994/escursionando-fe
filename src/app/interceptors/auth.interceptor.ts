@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, filter, take, switchMap } from 'rxjs/operators';
@@ -9,13 +9,10 @@ import * as AuthActions from '../store/auth/auth.actions';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  private store = inject(Store<AppState>);
+  private authService = inject(AuthService);
   private isRefreshing = false;
   private refreshTokenSubject = new BehaviorSubject<string | null>(null);
-
-  constructor(
-    private store: Store<AppState>,
-    private authService: AuthService
-  ) {}
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let token: string | null = null;

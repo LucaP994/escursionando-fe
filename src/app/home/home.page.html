@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <!-- Hero Section per utenti non autenticati -->
-  <div class="hero-section" *ngIf="(isAuthenticated$ | async) === false && (tracks$ | async)?.length === 0">
+  <div class="hero-section" *ngIf="!isAuthenticated() && tracks().length === 0">
     <div class="hero-content">
       <img src="../../../assets/icon/favicon.png" alt="Escursionando" class="hero-logo" />
       <h1>Escursionando</h1>
@@ -27,16 +27,16 @@
   </div>
 
   <!-- Loading State -->
-  <div class="loading-section" *ngIf="loading$ | async">
+  <div class="loading-section" *ngIf="loading()">
     <ion-spinner name="crescent" color="primary"></ion-spinner>
     <p>Caricamento percorsi...</p>
   </div>
 
   <!-- Tracks List -->
   <div class="item-container">
-    <app-card *ngFor="let track of tracks$ | async" [track]="track" style="margin-bottom: 1rem;"></app-card>
+    <app-card *ngFor="let track of tracks()" [track]="track" style="margin-bottom: 1rem;"></app-card>
     
-    <div class="empty-state" *ngIf="(tracks$ | async)?.length === 0 && !(loading$ | async)">
+    <div class="empty-state" *ngIf="tracks().length === 0 && !loading()">
       <ion-icon name="map-outline" size="large"></ion-icon>
       <p>Nessun percorso trovato</p>
       <ion-button fill="clear" routerLink="/explore">Esplora la mappa</ion-button>

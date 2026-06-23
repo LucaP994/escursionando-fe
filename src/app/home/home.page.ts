@@ -1,34 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, signal, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Track } from '../models/track-model';
 import { AppState } from '../store/app.state';
 import * as TracksActions from '../store/tracks/tracks.actions';
-import { selectAllTracks, selectTracksLoading } from '../store/tracks/tracks.reducer';
+import { selectAllTracks, selectTracksLoading } from '../store/tracks/tracks.selectors';
+import { selectIsAuthenticated } from '../store/auth/auth.selectors';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  standalone: false
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePage implements OnInit {
-  tracks$: Observable<Track[]>;
-  loading$: Observable<boolean>;
-  isAuthenticated$: Observable<boolean>;
-  searchQuery = '';
+  private store = inject(Store<AppState>);
 
-  constructor(private store: Store<AppState>) {
-    this.tracks$ = this.store.select(selectAllTracks);
-    this.loading$ = this.store.select(selectTracksLoading);
-    this.isAuthenticated$ = this.store.select(s => s.auth.isAuthenticated);
-  }
+  tracks = this.store.selectSignal(selectAllTracks);
+  loading = this.store.selectSignal(selectTracksLoading);
+  isAuthenticated = this.store.selectSignal(selectIsAuthenticated);
+  searchQuery = signal('');
 
   ngOnInit() {
     this.store.dispatch(TracksActions.loadTracks());
   }
 
   onSearch() {
-    this.store.dispatch(TracksActions.setTrackSearch({ search: this.searchQuery }));
+    this.store.dispatch(TracksActions.setTrackSearch({ search: this.searchQuery() }));
   }
 }

@@ -1,22 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Track } from '../models/track-model';
 import { Comment } from '../models/comment-model';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TrackService {
+  private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
-
-  constructor(private http: HttpClient) {}
 
   getTracks(search?: string, difficulty?: number | null, sortBy?: string): Observable<Track[]> {
     let params: any = {};
     if (search) params.search = search;
     if (difficulty) params.difficulty = difficulty;
     if (sortBy) params.sortBy = sortBy;
-    return this.http.get<Track[]>(`${this.apiUrl}/tracks`, { params });
+    return this.http.get<{ content: Track[] }>(`${this.apiUrl}/tracks`, { params }).pipe(
+      map(response => response.content || [])
+    );
   }
 
   getTrackById(id: string): Observable<Track> {

@@ -10,7 +10,7 @@
   <div class="menu-icon menu-add" (click)="createTrack()">
     <ion-icon name="add-circle"></ion-icon>
   </div>
-  <ng-container *ngIf="isAuthenticated$ | async; else guestMenu">
+  <ng-container *ngIf="isAuthenticated(); else guestMenu">
     <div class="menu-icon" [routerLink]="['/profile']" replaceUrl="true">
       <ion-icon name="person-outline"></ion-icon>
       <p>Profilo</p>
